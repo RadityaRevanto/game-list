@@ -4,8 +4,6 @@ If there is a conflicting class name in this file,
 it means you have to rename it to something more unique.
 */
 export 'package:game_list/model/game_detail.dart';
-export 'package:game_list/module/category/controller/category_controller.dart';
-export 'package:game_list/module/category/view/category_view.dart';
 export 'package:game_list/module/detail_game/controller/detail_game_controller.dart';
 export 'package:game_list/module/detail_game/view/detail_game_view.dart';
 export 'package:game_list/module/favorit/controller/favorit_controller.dart';

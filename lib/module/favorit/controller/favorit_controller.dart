@@ -28,15 +28,20 @@ class FavoritController extends State<FavoritView> {
 
     Future read() async {
         setState(() {
-            isLoading = true; // Show loading indicator
+            isLoading = true;
         });
 
         dataListFavorite = await FavDatabase.instance.readAll();
         print("Length List " + dataListFavorite.length.toString());
 
         setState(() {
-            isLoading = false; // Hide loading indicator
+            isLoading = false;
         });
+    }
+
+
+    Future<void> refresh() async {
+        await read(); // Panggil kembali fungsi read() untuk mengambil ulang data
     }
 
     showDeleteDialog(BuildContext context, String? name) {

@@ -1,4 +1,4 @@
-import 'package:expandable_text/expandable_text.dart';
+
 import 'package:flutter/material.dart';
 import 'package:game_list/core.dart';
 import '../../../model/favorit_model.dart';
@@ -37,10 +37,7 @@ class DetailGameView extends StatefulWidget {
                     } else {
                       await controller.addToFavorites(favorite);
                     }
-                    // setState(() {
-                    //   // Refresh the UI to update the favorite icon
-                    // });
-                    // Navigator.pop(context);
+                    controller.updateState();
 
                   },
                   icon: Icon(

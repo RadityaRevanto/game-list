@@ -51,7 +51,6 @@ class DetailGameController extends State<DetailGameView> {
 
     Future <void> addToFavorites(FavoriteModel favorite) async{
         try{
-            setState(() {});
             await FavDatabase.instance.create(favorite);
             ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text('Added to favorites')),
@@ -67,5 +66,11 @@ class DetailGameController extends State<DetailGameView> {
     Future<bool> isFavorite(FavoriteModel favorite) async{
         bool exist = await FavDatabase.instance.read(favorite.name.toString());
         return exist;
+    }
+
+    void updateState() {
+        setState(() {
+            // Update your state variables here
+        });
     }
 }

@@ -23,29 +23,7 @@ class MainNavigationView extends StatefulWidget {
                 ),
             ],
         ),
-        bottomNavigationBar: controller.colorful
-            ? SlidingClippedNavBar.colorful(
-            backgroundColor: Colors.white,
-            onButtonPressed: controller.onButtonPressed,
-            iconSize: 30,
-            // activeColor: const Color(0xFF01579B),
-            selectedIndex: controller.selectedIndex,
-            barItems: <BarItem>[
-                BarItem(
-                    icon: Icons.home,
-                    title: 'Home',
-                    activeColor: Colors.blue,
-                    inactiveColor: Colors.orange,
-                ),
-                BarItem(
-                    icon: Icons.favorite,
-                    title: 'Favorite',
-                    activeColor: Colors.yellow,
-                    inactiveColor: Colors.green,
-                ),
-            ],
-        )
-            : SlidingClippedNavBar(
+        bottomNavigationBar: SlidingClippedNavBar(
             backgroundColor: Colors.white,
             onButtonPressed: controller.onButtonPressed,
             iconSize: 30,

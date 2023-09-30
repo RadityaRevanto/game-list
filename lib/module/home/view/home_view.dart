@@ -38,7 +38,9 @@
               SizedBox(height: 16.0,),
               Expanded(
                 child: ListView.builder(
+                  controller: controller.scrollController,
                   itemCount: controller.foundGames.length,
+                  physics: ScrollPhysics(),
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(5.0),

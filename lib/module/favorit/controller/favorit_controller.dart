@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:game_list/core.dart';
+import 'package:game_list/model/list_model.dart';
 import '../../../model/favorit_model.dart';
 import '../database_sqflite/FavDatabase.dart';
 import '../view/favorit_view.dart';
@@ -26,7 +27,7 @@ class FavoritController extends State<FavoritView> {
 
     List<FavoriteModel> dataListFavorite = [];
     bool isLoading = false;
-
+    List<Results> results = [];
 
     Future read() async {
         setState(() {

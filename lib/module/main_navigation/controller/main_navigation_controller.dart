@@ -18,7 +18,6 @@ class MainNavigationController extends State<MainNavigationView> {
             case 1:selectedIndex= selectedIndex+ widget.halamanke;break;
             case 2:selectedIndex= selectedIndex+ widget.halamanke;break;
             case 3:selectedIndex= selectedIndex+ widget.halamanke;break;
-
         }
         pageController = PageController(initialPage: widget.halamanke);
 

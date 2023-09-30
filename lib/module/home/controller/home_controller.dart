@@ -17,6 +17,18 @@ class HomeController extends State<HomeView> {
     void initState() {
         instance = this;
         getGamesList();
+        scrollController.addListener(() {
+            double offset = scrollController.offset;
+            double maxOffset = scrollController.position.maxScrollExtent;
+            print("offset:  ${offset}");
+            print("maxOffset ${maxOffset}");
+            if(offset == maxOffset){
+                nextPage();
+            }
+            // if (offset >= maxOffset * 0.7){
+            //         nextPage();
+            // }
+        });
         super.initState();
     }
 
@@ -29,8 +41,40 @@ class HomeController extends State<HomeView> {
     Widget build(BuildContext context) => widget.build(context, this);
 
     GameList? gamesList;
+
+    int page = 1;
+    ScrollController scrollController = ScrollController();
+    bool loading = false;
+
+    nextPage() async {
+        page++;
+        loading = true;
+        gamesList = await ApiServices().getGameList(page: page);
+        if (gamesList == null) {
+            print("data kosong atau tidak lengkap");
+        } else {
+            print(gamesList.toString());
+            List<Map<String, dynamic>> newGames = gamesList!.results?.map((data) {
+                return {
+                    'id': data.id.toString(),
+                    'name': data.name.toString(),
+                    'slug': data.slug.toString(),
+                    'released': data.released.toString(),
+                    'image': data.backgroundImage.toString(),
+                };
+            }).toList() ?? [];
+            allGames.addAll(newGames); // Tambahkan data baru ke dalam allGames
+        }
+        setState(() {
+            isloaded = true;
+        });
+    }
+
+
+
+
     getGamesList() async {
-        gamesList = await ApiServices().getGameList();
+        gamesList = await ApiServices().getGameList(page: page);
         if (gamesList == null) {
             print("data kosong atau tidak lengkap");
         } else {
@@ -65,4 +109,5 @@ class HomeController extends State<HomeView> {
             foundGames = results;
         });
     }
+
 }

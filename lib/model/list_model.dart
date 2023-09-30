@@ -1,7 +1,7 @@
 class GameList {
   int? count;
   String? next;
-  Null? previous;
+  String? previous;
   List<Results>? results;
   String? seoTitle;
   String? seoDescription;
@@ -84,7 +84,7 @@ class Results {
   int? playtime;
   int? suggestionsCount;
   String? updated;
-  Null? userGame;
+  String? userGame;
   int? reviewsCount;
   String? saturatedColor;
   String? dominantColor;
@@ -92,7 +92,7 @@ class Results {
   List<ParentPlatforms>? parentPlatforms;
   List<Genres>? genres;
   List<Stores>? stores;
-  Null? clip;
+  String? clip;
   List<Tags>? tags;
   Platform? esrbRating;
   List<ShortScreenshots>? shortScreenshots;
@@ -361,8 +361,8 @@ class Platform {
   int? id;
   String? name;
   String? slug;
-  Null? image;
-  Null? yearEnd;
+  String? image;
+  String? yearEnd;
   int? yearStart;
   int? gamesCount;
   String? imageBackground;

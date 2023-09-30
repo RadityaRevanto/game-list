@@ -8,11 +8,11 @@ import '../../model/list_model.dart';
 class ApiServices {
   static String _apiKey = "bb420a041cac4586b10205de382a5166";
 
-  Future getGameList() async{
+  Future getGameList({
+    required int page,
+  }) async{
     try{
-      final response = await http.get(
-        Uri.parse("https://api.rawg.io/api/games?key=$_apiKey"),
-      );
+      final response = await http.get(Uri.parse("https://api.rawg.io/api/games?key=$_apiKey&page=$page"));
     if(response.statusCode == 200){
       GameList gamesList = GameList.fromJson(jsonDecode(response.body));
       print(response.body);

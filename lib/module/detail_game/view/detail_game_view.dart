@@ -38,7 +38,6 @@ class DetailGameView extends StatefulWidget {
                       await controller.addToFavorites(favorite);
                     }
                     controller.updateState();
-
                   },
                   icon: Icon(
                     isFav

@@ -13,7 +13,9 @@ class FavoritController extends State<FavoritView> {
     void initState() {
         instance = this;
         super.initState();
+        print("1");
         read();
+        print("1");
     }
 
     @override
@@ -30,18 +32,15 @@ class FavoritController extends State<FavoritView> {
         setState(() {
             isLoading = true;
         });
-
         dataListFavorite = await FavDatabase.instance.readAll();
         print("Length List " + dataListFavorite.length.toString());
-
         setState(() {
             isLoading = false;
         });
     }
 
-
     Future<void> refresh() async {
-        await read(); // Panggil kembali fungsi read() untuk mengambil ulang data
+        await read();
     }
 
     showDeleteDialog(BuildContext context, String? name) {
@@ -76,8 +75,4 @@ class FavoritController extends State<FavoritView> {
             },
         );
     }
-
-
 }
-        
-    

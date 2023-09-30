@@ -1,44 +1,66 @@
 
 import 'package:flutter/material.dart';
 import 'package:game_list/core.dart';
+import 'package:sliding_clipped_nav_bar/sliding_clipped_nav_bar.dart';
 import '../controller/main_navigation_controller.dart';
 
 class MainNavigationView extends StatefulWidget {
-    const MainNavigationView({Key? key}) : super(key: key);
+    final int halamanke;
+    const MainNavigationView({Key? key, required this.halamanke}) : super(key: key);
 
     Widget build(context, MainNavigationController controller) {
     controller.view = this;
 
-    return DefaultTabController(
-        length: 4,
-        initialIndex: controller.selectedIndex,
-        child: Scaffold(
-            body: IndexedStack(
-                index: controller.selectedIndex,
-                children: [
-                    HomeView(),
-                    FavoritView()
-                ],
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-                currentIndex: controller.selectedIndex,
-                onTap: (newIndex) => controller.updateIndex(newIndex),
-                type: BottomNavigationBarType.fixed,
-                items: const [
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                            Icons.home_filled,
-                        ),
-                        label: "Home",
+    return Scaffold(
+        body: Column(
+            children: <Widget>[
+                Expanded(
+                    child: PageView(
+                        physics:  NeverScrollableScrollPhysics(),
+                        controller: controller.pageController,
+                        children: controller.listOfWidget,
                     ),
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                            Icons.favorite,
-                        ),
-                        label: "Favorite",
-                    ),
-                ],
-            ),
+                ),
+            ],
+        ),
+        bottomNavigationBar: controller.colorful
+            ? SlidingClippedNavBar.colorful(
+            backgroundColor: Colors.white,
+            onButtonPressed: controller.onButtonPressed,
+            iconSize: 30,
+            // activeColor: const Color(0xFF01579B),
+            selectedIndex: controller.selectedIndex,
+            barItems: <BarItem>[
+                BarItem(
+                    icon: Icons.home,
+                    title: 'Home',
+                    activeColor: Colors.blue,
+                    inactiveColor: Colors.orange,
+                ),
+                BarItem(
+                    icon: Icons.favorite,
+                    title: 'Favorite',
+                    activeColor: Colors.yellow,
+                    inactiveColor: Colors.green,
+                ),
+            ],
+        )
+            : SlidingClippedNavBar(
+            backgroundColor: Colors.white,
+            onButtonPressed: controller.onButtonPressed,
+            iconSize: 30,
+            activeColor: const Color(0xFF01579B),
+            selectedIndex: controller.selectedIndex,
+            barItems: <BarItem>[
+                BarItem(
+                    icon: Icons.home,
+                    title: 'Home',
+                ),
+                BarItem(
+                    icon: Icons.favorite,
+                    title: 'Favorite',
+                ),
+            ],
         ),
     );
     }
